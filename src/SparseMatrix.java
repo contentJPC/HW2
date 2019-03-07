@@ -4,23 +4,23 @@ public class SparseMatrix {
     private HeadNode firstRow;
     private HeadNode firstCol;
 
-    public void SparseMatrix(int pRows, int pCols){
+    public void SparseMatrix(int rows, int cols){
 
     }
 
-    public void insert(int pRow, int pCol, int pVal) {
+    public void insert(int row, int col, int val) {
 
     }
 
-    public HeadNode getRow(int pPos) {
+    public HeadNode getRow(int pos) {
         return null;
     }
 
-    public HeadNode getCol(int pPos) {
+    public HeadNode getCol(int pos) {
         return null;
     }
 
-    public int getValue(int pRow, int pCol) {
+    public int getValue(int row, int col) {
         return 0;
     }
 
@@ -32,7 +32,7 @@ public class SparseMatrix {
         return null;
     }
 
-    public SparseMatrix product(SparseMatrix pOther) {
+    public SparseMatrix product(SparseMatrix other) {
         return null;
     }
 
