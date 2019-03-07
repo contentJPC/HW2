@@ -1,6 +1,6 @@
 public interface Node {
     Node getNextRow();
-    void setNextRow(Node pNext);
+    void setNextRow(Node next);
     Node getNextCol();
-    void setNextCol(Node pNext);
+    void setNextCol(Node next);
 }
