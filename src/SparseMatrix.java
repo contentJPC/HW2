@@ -33,6 +33,10 @@ public class SparseMatrix {
 
     }
 
+
+
+
+    //is this finished or not?
     public void insert(int pRow, int pCol, int pVal) {
         ValueNode nodeToInsert = new ValueNode(pRow, pCol, pVal);
         //get and insert row
@@ -43,6 +47,11 @@ public class SparseMatrix {
         colHead.insert(nodeToInsert);
     }
 
+
+
+
+
+    //make these return the proper values
     public HeadNode getRow(int pos) {
         return null;
     }
@@ -54,6 +63,11 @@ public class SparseMatrix {
     public int getValue(int row, int col) {
         return 0;
     }
+
+
+
+
+
 
     public void print() {
 
