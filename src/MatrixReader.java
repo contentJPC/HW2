@@ -19,9 +19,10 @@ public class MatrixReader {
                 int pCol = Integer.parseInt(matrixValue[0]);
                 int value = Integer.parseInt(matrixValue[1]);
                 textFile.insert(pRow, pCol, value);
-                
+
             }
         }
+        return textFile;
 
     }
 }
