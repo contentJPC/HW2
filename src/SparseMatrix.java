@@ -6,7 +6,7 @@ public class SparseMatrix {
 
     public SparseMatrix(int rows, int cols){
         //all we're doing is making a matrix where every value is 0, we use insert later to add values
-        //taking in row and col number to be use in the forloops below
+        //taking in row and col number to be used in the forloops below
         this.totalCols = cols;
         this.totalRows = rows;
 
@@ -18,8 +18,7 @@ public class SparseMatrix {
         //check to make sure this loops the proper number of times
         for(int i=0;i<totalCols;i++) {
             cCurrent.setNextCol(new MatrixColumn());
-            cCurrent = cCurrent.getNextCol(); //written as its shown in the guide, but type mismatch
-            //is there an implementation of something not being used?
+            cCurrent = (MatrixColumn) cCurrent.getNextCol(); //test to make sure this works
         }
 
         //same as above but for row instead
@@ -28,7 +27,7 @@ public class SparseMatrix {
 
         for(int i=0;i<totalRows;i++) {
             rCurrent.setNextCol(new MatrixRow());
-            rCurrent = rCurrent.getNextRow(); //gaaah same issue as above
+            rCurrent = (MatrixRow) rCurrent.getNextRow(); //test to make sure this works
         }
 
     }
