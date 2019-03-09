@@ -1,6 +1,7 @@
 public class Main {
     public static void main(String[] args) {
-        System.out.println("hi");
+        Homework2 program = new Homework2();
+        program.run();
     }
 }
 //https://docs.google.com/document/d/1Fie72BxO2ORm9fJZ-y8bDkBfAg7CWl9onSeirCLWLhY/edit#
