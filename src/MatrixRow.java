@@ -1,22 +1,55 @@
 public class MatrixRow implements HeadNode {
     private Node nextRow;
     private Node nextCol;
-    
-    public Node getNextRow() { return nextRow; }
 
-    public void setNextRow(Node next) { nextRow = next; }
+    public boolean isEmpty() {
+        return getFirst() == null;
+    }
 
-    public Node getNextCol() { return nextCol; }
+    public Node getNextRow() {
+        return nextRow;
+    }
 
-    public void setNextCol(Node next) { nextCol = next; }
+    public void setNextRow(Node next) {
+        nextRow = next;
+    }
 
-    public HeadNode getNext(){ return (HeadNode)nextRow; }
+    public Node getNextCol() {
+        return nextCol;
+    }
 
-    public ValueNode getFirst(){ return (ValueNode)nextCol; }
-    
-    void insert(ValueNode value);
-    
-    int get(int position){
+    public void setNextCol(Node next) {
+        nextCol = next;
+    }
+
+    public HeadNode getNext() {
+        return (HeadNode) nextRow;
+    }
+
+    public ValueNode getFirst() {
+        return (ValueNode) nextCol;
+    }
+
+    int get ( int position){
         return 0;
+    }
+
+    void insert(ValueNode value) {
+        MatrixReader matrixReader = new MatrixReader();
+        int temp = 0;
+        if (isEmpty()) {
+            //set first node to value;
+        }
+        else if (!isEmpty()) {
+            while ( amount of values to process isnt empty ) {
+                if (before) {
+
+                }
+
+                else (after) {
+
+                }
+            }
+        }
     }
 }
