@@ -1,3 +1,5 @@
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
+
 public class MatrixRow implements HeadNode {
     private Node nextRow;
     private Node nextCol;
@@ -30,24 +32,40 @@ public class MatrixRow implements HeadNode {
         return (ValueNode) nextCol;
     }
 
-    int get ( int position){
-        return 0;
+    int get (int position){
+        ValueNode cur = head;
+        for(int i=0; i < index; i++) {
+            if (cur == null) {
+                throw new NotImplementedException();
+            }
+            cur = cur.getNext();
+        }
+        return cur.getValue();
     }
 
     void insert(ValueNode value) {
         MatrixReader matrixReader = new MatrixReader();
-        int temp = 0;
+        //need variable for total values
+        ValueNode node = new ValueNode(value);
         if (isEmpty()) {
-            //set first node to value;
+            node = head;
         }
         else if (!isEmpty()) {
-            while ( amount of values to process isnt empty ) {
-                if (before) {
+            for (int i = 0; i < totalValues; i++ ) {
 
+                //insert before first node
+                if () {
+                    IntegerNode node = new IntegerNode(value);
+                    node.setNext(head);
+                    head = node;
                 }
 
-                else (after) {
+                else () {
+                    ValueNode node = new ValueNode(value);
 
+                    if(isEmpty()) {
+                        head = node;
+                    }
                 }
             }
         }
