@@ -30,4 +30,4 @@ the value of each Node/ValueNode and return their values to the console
 
 after that we need to make the transpose and product functions
 
-WE HAVE 9 HOURS TO DO THIS BECAUSE EVERYONE WAS LAZY
+WE HAVE 7 HOURS TO DO THIS BECAUSE EVERYONE WAS LAZY
