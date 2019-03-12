@@ -1,3 +1,5 @@
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
+
 public class MatrixColumn implements HeadNode {
     private ValueNode head;
     private Node nextRow;
@@ -19,31 +21,45 @@ public class MatrixColumn implements HeadNode {
 
     public ValueNode getFirst(){ return (ValueNode)nextRow; }
 
-    public int get(int position){ //we want to return the value at a given point, for column position will be which row its in
-        //go to a specified position in the sparse matrix and return the value
-
-        ValueNode cur = head;
-        for(int i=0; i < position; i++) {
-            if (cur == null) {
-                //OH SHIT, THATS OUT OF THE MATRIX
-                //WAT'CHU GONNA DO ABOUT IT FAGLORD
-            }
-            cur = (ValueNode) cur.getNextRow();
+    //is the insert method here supposed to be the same as the one in MatrixRow?
+    void insert(ValueNode value) {
+        MatrixReader matrixReader = new MatrixReader();
+        int totalValues = matrixReader.getTotalValues();
+        //ValueNode doesn't take in any variables and the variable 'value' is not created anywhere
+        ValueNode node = new ValueNode(value);
+        if (isEmpty()) {
+            node = head;
         }
-        return cur.getValue();
+        else if (!isEmpty()) {
+            for (int i = 0; i < totalValues; i++ ) {
+
+                //insert before first node
+                if () {
+                    ValueNode node = new ValueNode(value);
+                    node.setNextColumn(head);
+                    head = node;
+                } else {
+                    ValueNode node = new ValueNode(value);
+
+                    if(isEmpty()) {
+                        head = node;
+                    }
+                }
     }
 
-    public void insert(ValueNode value) {
-        //insert a value at its specified position, because we're placing it in a predetermined column
-        //I believe we place it based on the row value
-        ValueNode cur = head;
-        for(int i=0; i < value.getRow(); i++) {
-            if (cur == null) {
-                //OH SHIT, THATS OUT OF THE MATRIX
-                //WAT'CHU GONNA DO ABOUT IT FAGLORD
+    //is the get method here supposed to be the same as the on in MatrixRow?
+    int get(int position){
+      ValueNode cur = head;
+                for(int i=0; i < index; i++) {
+                    if (cur == null) {
+                        throw new NotImplementedException();
+                    }
+                    //'getNext' is only set in the class ValueNode
+                    //so if you want to use it you have to implement ValueNode before hand
+                    cur = cur.getNext();
+                }
+                return cur.getValue();
             }
-            cur = (ValueNode) cur.getNextRow();
         }
-        cur.setValue(value.getValue());
     }
 }
