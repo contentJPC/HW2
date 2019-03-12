@@ -69,6 +69,7 @@ public class SparseMatrix {
 
 
     public void print() {
+        System.out.println("This doesn't actually print the sparse matrix yet, but hello!");
     }
 
     public SparseMatrix transpose() {

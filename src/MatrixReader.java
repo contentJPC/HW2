@@ -23,11 +23,10 @@ public class MatrixReader {
             }
             pRow = pRow + 1;
         }
-
-        }
         return textFile;
-
+        }
+//    public int tokensLength(){
+//        return tokens.length;
+//    }
+    // what does tokensLength even do at the moment?
     }
-    public int tokensLength(){
-        return tokens.length;
-}
