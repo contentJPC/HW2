@@ -54,18 +54,39 @@ public class MatrixRow implements HeadNode {
     //this is some ridiculous shit
 
      public void insert(ValueNode value) {
-         //insert a value at its specified position, because we're placing it in a predetermined column
-         //I believe we place it based on the row value
-         head.setRow(value.getRow());
-         ValueNode cur = head; //the problem here is head is currently null and we need to make it not null for this shit to work
-         for(int i=0; i < value.getCol(); i++) {
-             if (cur == null) {
-                 //OH SHIT, THATS OUT OF THE MATRIX
-                 //WAT'CHU GONNA DO ABOUT IT FAGLORD
-             }
-             cur = (ValueNode) cur.getNextCol();
+        ValueNode cur;
+         if(head == null) {
+             head = value;
          }
-         cur.setValue(value.getValue());
+         else if(head.getCol() > value.getCol()) {
+             cur = head;
+             head = value;
+             head.setNextCol(cur);
+         }
+         else if(head.getCol() < value.getCol()) {
+             cur = head;
+             boolean running = true;
+             while (running) {
+                 cur = (ValueNode) cur.getNextCol();
+                 insert(value);
+                 }
+             }
+         }
+
+
+
+//         //insert a value at its specified position, because we're placing it in a predetermined column
+//         //I believe we place it based on the row value
+//         head.setRow(value.getRow());
+//         ValueNode cur = head; //the problem here is head is currently null and we need to make it not null for this shit to work
+//         for(int i=0; i < value.getCol(); i++) {
+//             if (cur == null) {
+//                 //OH SHIT, THATS OUT OF THE MATRIX
+//                 //WAT'CHU GONNA DO ABOUT IT FAGLORD
+//             }
+//             cur = (ValueNode) cur.getNextCol();
+//         }
+//         cur.setValue(value.getValue());
 
 
 
@@ -99,4 +120,3 @@ public class MatrixRow implements HeadNode {
 //            }
 //        }
     }
-}

@@ -34,16 +34,22 @@ public class MatrixColumn implements HeadNode {
     }
 
     public void insert(ValueNode value) {
-        //insert a value at its specified position, because we're placing it in a predetermined column
-        //I believe we place it based on the row value
-        ValueNode cur = head;
-        for(int i=0; i < value.getRow(); i++) {
-            if (cur == null) {
-                //OH SHIT, THATS OUT OF THE MATRIX
-                //WAT'CHU GONNA DO ABOUT IT FAGLORD
-            }
-            cur = (ValueNode) cur.getNextRow();
+        ValueNode cur;
+        if(head == null) {
+            head = value;
         }
-        cur.setValue(value.getValue());
+        else if(head.getRow() > value.getRow()) {
+            cur = head;
+            head = value;
+            head.setNextRow(cur);
+        }
+        else if(head.getRow() < value.getRow()) {
+            cur = head;
+            boolean running = true;
+            while (running) {
+                cur = (ValueNode) cur.getNextRow();
+                insert(value);
+            }
+        }
     }
 }
