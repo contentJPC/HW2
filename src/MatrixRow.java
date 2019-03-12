@@ -56,7 +56,8 @@ public class MatrixRow implements HeadNode {
      public void insert(ValueNode value) {
          //insert a value at its specified position, because we're placing it in a predetermined column
          //I believe we place it based on the row value
-         ValueNode cur = head;
+         head.setRow(value.getRow());
+         ValueNode cur = head; //the problem here is head is currently null and we need to make it not null for this shit to work
          for(int i=0; i < value.getCol(); i++) {
              if (cur == null) {
                  //OH SHIT, THATS OUT OF THE MATRIX

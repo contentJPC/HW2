@@ -23,7 +23,7 @@ public class ValueNode implements Node {
 
     public int getRow(){ return row; }
 
-    public void setRow(){ this.row = row; }
+    public void setRow(int row){ this.row = row; }
 
     public Node getNextRow(){ return nextRow; }
 
