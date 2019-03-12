@@ -1,6 +1,6 @@
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
-public class MatrixColumn implements Headnode {
+public class MatrixColumn implements HeadNode {
     private ValueNode head;
     private Node nextRow;
     private Node nextCol;
@@ -21,7 +21,7 @@ public class MatrixColumn implements Headnode {
 
     public ValueNode getFirst(){ return (ValueNode)nextRow; }
     
-    void insert(ValueNode value) {
+    public void insert(ValueNode value) {
         ValueNode cur = head;
         for(int i=0; i < index; i++) {
             if (cur == null) {
@@ -32,7 +32,7 @@ public class MatrixColumn implements Headnode {
         return cur.getValue();
     }
     
-    int get(int position){
+    public int get(int position){
         MatrixReader matrixReader = new MatrixReader();
         //need variable for total values
         ValueNode node = new ValueNode(value);

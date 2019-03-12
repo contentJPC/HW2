@@ -32,7 +32,7 @@ public class MatrixRow implements HeadNode {
         return (ValueNode) nextCol;
     }
 
-    int get (int position){
+    public int get (int position){
         ValueNode cur = head;
         for(int i=0; i < index; i++) {
             if (cur == null) {
@@ -43,7 +43,7 @@ public class MatrixRow implements HeadNode {
         return cur.getValue();
     }
 
-    void insert(ValueNode value) {
+     public void insert(ValueNode value) {
         MatrixReader matrixReader = new MatrixReader();
         //need variable for total values
         ValueNode node = new ValueNode(value);

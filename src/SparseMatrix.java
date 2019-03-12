@@ -6,7 +6,7 @@ public class SparseMatrix {
 
     public SparseMatrix(int rows, int cols){
         //all we're doing is making a matrix where every value is 0, we use insert later to add values
-        //taking in row and col number to be used in the forloops below
+        //taking in row and col number (matrix size) to be used in the forloops below
         this.totalCols = cols;
         this.totalRows = rows;
 
@@ -69,7 +69,6 @@ public class SparseMatrix {
 
 
     public void print() {
-
     }
 
     public SparseMatrix transpose() {
