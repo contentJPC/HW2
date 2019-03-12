@@ -3,9 +3,7 @@ public class MatrixColumn implements HeadNode {
     private Node nextRow;
     private Node nextCol;
 
-    public boolean isEmpty() {
-        return head == null;
-    }
+    public boolean isEmpty(){return head == null;}
 
     public Node getNextRow() { return nextRow; }
 
@@ -52,4 +50,4 @@ public class MatrixColumn implements HeadNode {
             }
         }
     }
-}
+    }
