@@ -1,5 +1,3 @@
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
-
 public class MatrixColumn implements HeadNode {
     private ValueNode head;
     private Node nextRow;
@@ -20,43 +18,32 @@ public class MatrixColumn implements HeadNode {
     public HeadNode getNext(){ return (HeadNode)nextCol; }
 
     public ValueNode getFirst(){ return (ValueNode)nextRow; }
-    
-    public void insert(ValueNode value) {
+
+    public int get(int position){ //we want to return the value at a given point, for column position will be which row its in
+        //go to a specified position in the sparse matrix and return the value
+
         ValueNode cur = head;
-        for(int i=0; i < index; i++) {
+        for(int i=0; i < position; i++) {
             if (cur == null) {
-                throw new NotImplementedException();
+                //OH SHIT, THATS OUT OF THE MATRIX
+                //WAT'CHU GONNA DO ABOUT IT FAGLORD
             }
-            cur = cur.getNext();
+            cur = (ValueNode) cur.getNextRow();
         }
         return cur.getValue();
     }
-    
-    public int get(int position){
-        MatrixReader matrixReader = new MatrixReader();
-        //need variable for total values
-        ValueNode node = new ValueNode(value);
-        if (isEmpty()) {
-            node = head;
-        }
-        else if (!isEmpty()) {
-            for (int i = 0; i < totalValues; i++ ) {
 
-                //insert before first node
-                if () {
-                    IntegerNode node = new IntegerNode(value);
-                    node.setNext(head);
-                    head = node;
-                }
-
-                else () {
-                    ValueNode node = new ValueNode(value);
-
-                    if(isEmpty()) {
-                        head = node;
-                    }
-                }
+    public void insert(ValueNode value) {
+        //insert a value at its specified position, because we're placing it in a predetermined column
+        //I believe we place it based on the row value
+        ValueNode cur = head;
+        for(int i=0; i < value.getRow(); i++) {
+            if (cur == null) {
+                //OH SHIT, THATS OUT OF THE MATRIX
+                //WAT'CHU GONNA DO ABOUT IT FAGLORD
             }
+            cur = (ValueNode) cur.getNextRow();
         }
+        cur.setValue(value.getValue());
     }
 }
