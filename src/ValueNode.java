@@ -1,4 +1,4 @@
-public class ValueNode {
+public class ValueNode implements Node {
     private int row;
     private int col;
     private int value;
