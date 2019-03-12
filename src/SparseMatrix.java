@@ -26,7 +26,7 @@ public class SparseMatrix {
         this.firstRow = rCurrent;
 
         for(int i=0;i<totalRows;i++) {
-            rCurrent.setNextCol(new MatrixRow());
+            rCurrent.setNextRow(new MatrixRow());
             rCurrent = (MatrixRow) rCurrent.getNextRow(); //test to make sure this works
         }
 
