@@ -66,19 +66,14 @@ public class SparseMatrix {
     }
 
     public int getValue(int row, int col) {
-        return 0;
+        return 9;
     }
-
-
-
-
-
 
     public void print() { //the good news is this prints out with the correct number of rows and columns
         //will need to make sure it can print out the correct values at the correct points once
         //insert has been properly implemented
         System.out.println("This doesn't actually print the sparse matrix properly yet, but hello!");
-        ValueNode val = firstRow.getFirst();
+        ValueNode val = firstRow.getFirst(); //val is being assigned null, check getFirst
         for(int i=0;i<totalRows;i++) {
             for(int j=0;j<totalCols;j++) {
                 try {
