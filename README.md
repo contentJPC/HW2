@@ -20,6 +20,10 @@ sparsematrix which calls insert from matrix row and matrix column
 once read finishes we should have a complete sparse matrix of 0's with other values at their given coordinates
 
 CURRENTLY WORKING ON MAKING SURE INSERT WORKS
+edit, inserts should be working properly
+CURRENT ISSUE
+currently seeing an issue in printing out the matrix where the values display properly instead of defaulting to 0
+
 
 we can print this matrix once that function is written, most likely a carefully formatted system of forloops can call
 the value of each Node/ValueNode and return their values to the console
