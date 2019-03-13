@@ -29,27 +29,22 @@ public class SparseMatrix {
             rCurrent.setNextRow(new MatrixRow());
             rCurrent = (MatrixRow) rCurrent.getNextRow();
         }
-
     }
-
-
-
 
     //is this finished or not?
     public void insert(int pRow, int pCol, int pVal) {
         ValueNode nodeToInsert = new ValueNode(pRow, pCol, pVal);
         //get and insert row
-        HeadNode rowHead = getRow(pRow);
+        HeadNode rowHead = getRow(pRow-1);
         rowHead.insert(nodeToInsert);
         //get and insert column
-        HeadNode colHead = getCol(pCol);
+        HeadNode colHead = getCol(pCol-1);
         colHead.insert(nodeToInsert);
     }
 
 
     //make these return the proper values
-    public HeadNode getRow(int pos) { // I was getting so upset over why this was returning null I had forgotten
-        //that it hadn't been written yet, thank you based debugger
+    public HeadNode getRow(int pos) {
         HeadNode cur = firstRow;
         for(int i=0;i<pos;i++){
             cur = (HeadNode)cur.getNextRow();
@@ -72,18 +67,22 @@ public class SparseMatrix {
     public void print() { //the good news is this prints out with the correct number of rows and columns
         //will need to make sure it can print out the correct values at the correct points once
         //insert has been properly implemented
-        System.out.println("This doesn't actually print the sparse matrix properly yet, but hello!");
-        ValueNode val = firstRow.getFirst(); //val is being assigned null, check getFirst
+
+        //lets try something else
+        HeadNode rowHead = firstRow;
+        ValueNode value = rowHead.getFirst();
         for(int i=0;i<totalRows;i++) {
-            for(int j=0;j<totalCols;j++) {
+            for (int j=0;j<totalCols;j++) {
                 try {
-                    System.out.print(val.getValue());
-                    val = (ValueNode) val.getNextCol();
+                    System.out.print(value.getValue());
+                    value = (ValueNode) value.getNextCol();
                 }
-                catch (NullPointerException e) {
-                    System.out.print("0");
+                catch (NullPointerException e){
+                    j=totalCols+1;
                 }
             }
+            value = rowHead.getFirst();
+            value = (ValueNode)value.getNextRow();
             System.out.println("");
         }
     }
