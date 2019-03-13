@@ -3,8 +3,9 @@ import java.util.*;
 
 public class matrixReaderTest {
     public void matrixReader() {
-        String directory = "C:\\Users\\Micha\\IdeaProjects\\Homework 2\\matrixFiles\\matrixA.txt";
+        String directory = "/home/cormiej/Downloads/matrixA.txt";
         MatrixReader matrixReader = new MatrixReader();
-        matrixReader.read(directory);
+        SparseMatrix sparse = matrixReader.read(directory);
+        sparse.print();
     }
 }

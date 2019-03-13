@@ -7,11 +7,8 @@ public class Homework2 {
 //    use this to test if print will work normally and stuff
 
 
-        //some general testing
-        SparseTest test = new SparseTest();
-        test.testA();
-
-
+        matrixReaderTest test = new matrixReaderTest();
+        test.matrixReader();
 
         //gonna write up some pseudo code that we can fill out as time goes on
 

@@ -1,12 +1,11 @@
 import java.util.*;
 import java.io.*;
-//import java.io.IOException;
 
 public class MatrixReader {
     //creating counters to return the number or rows and length of the file
     private int pRow = 1;
     private int arrayLength;
-    private SparseMatrix textFile;
+    public SparseMatrix textFile;
 
     public SparseMatrix read(String pFile) {
         try {
@@ -19,9 +18,9 @@ public class MatrixReader {
             String line2 = reader.nextLine();
             int numberOfColumns = Integer.parseInt(line2);
             //allows the information from line1 and line2 to be accessed by SparseMatrix
-            SparseMatrix textFile = new SparseMatrix(numberOfRows, numberOfColumns);
+            textFile = new SparseMatrix(numberOfRows, numberOfColumns);
 
-            
+
             //a while loop to run until the file is empty
             while (reader.hasNext()) {
                 //creates an array named 'tokens' to split the currentLine into an array then separates each cell by the spaces in the file
@@ -43,17 +42,14 @@ public class MatrixReader {
                 }
                 pRow = pRow + 1;
             }
+            return textFile;
         }
 
         catch (java.io.FileNotFoundException e) {
             System.out.println("another fucking error yay<3");
+            return null;
         }
 
-        return textFile;
+        //return textFile;
     }
-
-    public int getTotalValues() {
-        return arrayLength;
-    }
-
 }
