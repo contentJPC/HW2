@@ -88,6 +88,7 @@ public class SparseMatrix {
             }
         }
     }
+        return transposed;
  }
 
     public SparseMatrix product(SparseMatrix other) {
