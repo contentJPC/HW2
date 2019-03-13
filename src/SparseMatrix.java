@@ -72,7 +72,6 @@ public class SparseMatrix {
     }
 
     public SparseMatrix transpose() {
-                public SparseMatrix transpose() {
         SparseMatrix transposed = new SparseMatrix(totalCols,totalRows);
 
         ValueNode val = firstRow.getFirst(); //val is being assigned null, check getFirst
