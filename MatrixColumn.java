@@ -33,6 +33,7 @@ public class MatrixColumn implements HeadNode {
     public void insert(ValueNode value) {
         ValueNode cur = (ValueNode) head.getNextRow();
         ValueNode preCur;
+        boolean running = true;
         if(cur == null) {
             head.setNextRow(value);
         }
@@ -43,7 +44,7 @@ public class MatrixColumn implements HeadNode {
         }
         else if(cur.getRow() < value.getRow()) {
             preCur = cur;
-            while (cur.getRow() < value.getRow()) {
+            while (running && cur.getRow() < value.getRow()) {
                 try {
                     cur = (ValueNode) cur.getNextRow();
                     if (preCur.getRow() < value.getRow() && cur.getRow() > value.getRow()){
@@ -53,6 +54,7 @@ public class MatrixColumn implements HeadNode {
                 }
                 catch(NullPointerException e) {
                     preCur.setNextRow(value);
+                    running = false;
                 }
             }
         }
