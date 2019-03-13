@@ -49,6 +49,7 @@ public class MatrixRow implements HeadNode {
                          preCur.setNextCol(value);
                          value.setNextCol(cur);
                      }
+                     preCur = cur;
                  }
                  catch(NullPointerException e) {
                      preCur.setNextCol(value);
