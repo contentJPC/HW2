@@ -46,10 +46,8 @@ public class MatrixReader {
         }
 
         catch (java.io.FileNotFoundException e) {
-            System.out.println("another fucking error yay<3");
+            System.out.println("Incorrect directory.");
             return null;
         }
-
-        //return textFile;
     }
 }
