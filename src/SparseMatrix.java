@@ -71,21 +71,16 @@ public class SparseMatrix {
         }
     }
 
-    public SparseMatrix transpose() {
-            SparseMatrix transposed = new SparseMatrix(totalCols,totalRows);
+    public SparseMatrix transpose() { //currently has issues on moving values to the correct point
+        SparseMatrix transposed = new SparseMatrix(totalCols,totalRows);
 
-            ValueNode val = firstRow.getFirst(); //val is being assigned null, check getFirst
-            for(int i=0;i<totalRows;i++) {
-                for(int j=0;j<totalCols;j++) {
-                    try {
-                        val = (ValueNode) val.getNextCol();
-                        transposed.insert(j, i, val.getValue());
-
-                    }
-                    catch (NullPointerException e) {
-                    }
-                }
+        HeadNode colHead = firstCol;
+        for(int i=1;i<=totalCols;i++) {
+            for(int j=1;j<=totalRows;j++) {
+                transposed.insert(i,j,colHead.get(j));
             }
+            colHead = (HeadNode) colHead.getNextCol();
+        }
         return transposed;
     }
 
