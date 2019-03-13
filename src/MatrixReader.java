@@ -1,53 +1,59 @@
-import java.io.IOException;
-import java.util.Scanner;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.io.File;
+import java.util.*;
+import java.io.*;
+//import java.io.IOException;
 
 public class MatrixReader {
+    //creating counters to return the number or rows and length of the file
     private int pRow = 1;
+    private int arrayLength;
+    private SparseMatrix textFile;
 
-    //I had no idea how many functions were gonna be wrapped up in this one whew
     public SparseMatrix read(String pFile) {
-//        File file = new File(pFile);
-//        Path path = Paths.get(file);
-//        //why am I getting an IOException here and how can I fix this
-//        Scanner reader = new Scanner(path);
-//        //currently getting an IOException when attempting to set reader to the file
-//        try {
-//            reader = new Scanner(path);
-//        }
-//        catch (IOException e) {
-//            System.out.println("WHY");
-//        }
-        Scanner reader = new Scanner(pFile);
+        try {
+            //File pFile = new File("C:\\Users\\Micha\\IdeaProjects\\Homework 2\\matrixFiles\\matrixA.txt");
+            Scanner reader = new Scanner(new File(pFile));
+            //reads the first line of the file and sets the amount of rows to a variable named numberOfRows
+            String line1 = reader.nextLine();
+            int numberOfRows = Integer.parseInt(line1);
+            //reads the second line fo the file and sets the amount of columns to a variable named numberOfColumns
+            String line2 = reader.nextLine();
+            int numberOfColumns = Integer.parseInt(line2);
+            //allows the information from line1 and line2 to be accessed by SparseMatrix
+            SparseMatrix textFile = new SparseMatrix(numberOfRows, numberOfColumns);
 
+            
+            //a while loop to run until the file is empty
+            while (reader.hasNext()) {
+                //creates an array named 'tokens' to split the currentLine into an array then separates each cell by the spaces in the file
+                String currentLine = reader.nextLine();
+                String[] tokens = currentLine.split(" ");
+                //counter to set the total amount of values in the file
+                arrayLength = tokens.length + arrayLength;
 
-        String line1 = reader.nextLine();
-        int numberOfRows = Integer.parseInt(line1);
-        String line2 = reader.nextLine();
-        int numberOfColumns = Integer.parseInt(line2);
-        SparseMatrix textFile = new SparseMatrix(numberOfRows, numberOfColumns);
+                //a for loop to run through the new created array 'tokens'
+                for (int j = 0; j < tokens.length; j++) {
+                    //creates a new array that separates the cell values by ','
+                    //then sets the column number to the number in cell [0]
+                    //then sets the value to the number in cell [1]
+                    String[] matrixValue = tokens[j].split(",");
+                    int pCol = Integer.parseInt(matrixValue[0]);
+                    int value = Integer.parseInt(matrixValue[1]);
+                    textFile.insert(pRow, pCol, value);
 
-        while(reader.hasNext()) {
-            String currentLine =  reader.nextLine();
-            String[] tokens = currentLine.split(" ");
-       
-            for (int j = 0; j < tokens.length; j++) {
-                String[] matrixValue = tokens[j].split(",");
-                int pCol = Integer.parseInt(matrixValue[0]);
-                int value = Integer.parseInt(matrixValue[1]);
-                //call on sparse matrix's insert, which in turn calls on matrix row and cols inserts
-                textFile.insert(pRow, pCol, value);
-
+                }
+                pRow = pRow + 1;
             }
-            pRow = pRow + 1;
-        }
-        return textFile;
         }
 
-//    public int tokensLength(){
-//        return tokens.length;
-//    }
-    // what does tokensLength even do at the moment?
+        catch (java.io.FileNotFoundException e) {
+            System.out.println("another fucking error yay<3");
+        }
+
+        return textFile;
     }
+
+    public int getTotalValues() {
+        return arrayLength;
+    }
+
+}
