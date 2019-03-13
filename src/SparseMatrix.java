@@ -61,17 +61,17 @@ public class SparseMatrix {
     }
 
     public int getValue(int row, int col) {
-        return 9;
+        return 9999999;
     }
 
-    public void print() { //the good news is this prints out with the correct number of rows and columns
-        //will need to make sure it can print out the correct values at the correct points once
-        //insert has been properly implemented
-
-        //lets try something else
+    public void print() {
         HeadNode rowHead = firstRow;
-        ValueNode value = rowHead.getFirst();
+        ValueNode value;
         for(int i=0;i<totalRows;i++) {
+            value = rowHead.getFirst();
+            for(int k=0;k<i;k++) {
+                value = (ValueNode)value.getNextRow();
+            }
             for (int j=0;j<totalCols;j++) {
                 try {
                     System.out.print(value.getValue());
@@ -81,8 +81,6 @@ public class SparseMatrix {
                     j=totalCols+1;
                 }
             }
-            value = rowHead.getFirst();
-            value = (ValueNode)value.getNextRow();
             System.out.println("");
         }
     }
@@ -95,5 +93,11 @@ public class SparseMatrix {
         return null;
     }
 
+
+    private void printEmptyNodes(int x) {
+        for (int i=0;i<x;i++) {
+            System.out.print("0");
+        }
+    }
 
 }
