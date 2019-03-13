@@ -66,22 +66,17 @@ public class SparseMatrix {
 
     public void print() {
         HeadNode rowHead = firstRow;
-        ValueNode value;
         for(int i=0;i<totalRows;i++) {
-            value = rowHead.getFirst();
-            for(int k=0;k<i;k++) {
-                value = (ValueNode)value.getNextRow();
-            }
-            for (int j=0;j<totalCols;j++) {
+            for(int j=1;j<=totalCols;j++) {
                 try {
-                    System.out.print(value.getValue());
-                    value = (ValueNode) value.getNextCol();
+                    System.out.print(rowHead.get(j));
                 }
-                catch (NullPointerException e){
-                    j=totalCols+1;
+                catch (NullPointerException e) {
+                    System.out.print("0");
                 }
             }
             System.out.println("");
+            rowHead = (HeadNode) rowHead.getNextRow();
         }
     }
 
@@ -91,13 +86,6 @@ public class SparseMatrix {
 
     public SparseMatrix product(SparseMatrix other) {
         return null;
-    }
-
-
-    private void printEmptyNodes(int x) {
-        for (int i=0;i<x;i++) {
-            System.out.print("0");
-        }
     }
 
 }
