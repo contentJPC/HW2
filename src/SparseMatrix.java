@@ -97,6 +97,7 @@ public class SparseMatrix {
 //                    sum = (rowHead.get(j))*();
 //                }
 //                production.insert(i,j,sum);
+        // would this go after the for loop with k or inside it? I don't wanna mess with it without asking you guys but just something I was wondering
 //            }
 //        }
 
