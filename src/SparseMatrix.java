@@ -72,23 +72,22 @@ public class SparseMatrix {
     }
 
     public SparseMatrix transpose() {
-        SparseMatrix transposed = new SparseMatrix(totalCols,totalRows);
+            SparseMatrix transposed = new SparseMatrix(totalCols,totalRows);
 
-        ValueNode val = firstRow.getFirst(); //val is being assigned null, check getFirst
-        for(int i=0;i<totalRows;i++) {
-            for(int j=0;j<totalCols;j++) {
-                try {
-                    val = (ValueNode) val.getNextCol();
-                    transposed.insert(j, i, val.getValue());
+            ValueNode val = firstRow.getFirst(); //val is being assigned null, check getFirst
+            for(int i=0;i<totalRows;i++) {
+                for(int j=0;j<totalCols;j++) {
+                    try {
+                        val = (ValueNode) val.getNextCol();
+                        transposed.insert(j, i, val.getValue());
 
-                }
-                catch (NullPointerException e) {
+                    }
+                    catch (NullPointerException e) {
+                    }
                 }
             }
-        }
-    }
         return transposed;
- }
+    }
 
     public SparseMatrix product(SparseMatrix other) {
         return null;
