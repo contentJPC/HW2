@@ -1,5 +1,5 @@
 public class MatrixColumn implements HeadNode {
-    private ValueNode head;
+    private ValueNode head = new ValueNode();
     private Node nextRow;
     private Node nextCol;
 
@@ -15,7 +15,7 @@ public class MatrixColumn implements HeadNode {
 
     public HeadNode getNext(){ return (HeadNode)nextCol; }
 
-    public ValueNode getFirst(){ return (ValueNode)nextRow; }
+    public ValueNode getFirst(){ return (ValueNode) head.getNextRow(); }
 
     public int get(int position){ //we want to return the value at a given point, for column position will be which row its in
         //go to a specified position in the sparse matrix and return the value
@@ -32,21 +32,29 @@ public class MatrixColumn implements HeadNode {
     }
 
     public void insert(ValueNode value) {
-        ValueNode cur;
-        if(head == null) {
-            head = value;
+        ValueNode cur = (ValueNode) head.getNextRow();
+        ValueNode preCur;
+        if(cur == null) {
+            head.setNextRow(value);
         }
-        else if(head.getRow() > value.getRow()) {
-            cur = head;
-            head = value;
-            head.setNextRow(cur);
+        else if(cur.getRow() > value.getRow()) {
+            preCur = cur;
+            head.setNextRow(value);
+            value.setNextRow(preCur);
         }
-        else if(head.getRow() < value.getRow()) {
-            cur = head;
-            boolean running = true;
-            while (running) {
-                cur = (ValueNode) cur.getNextRow();
-                insert(value);
+        else if(cur.getRow() < value.getRow()) {
+            preCur = cur;
+            while (cur.getRow() < value.getRow()) {
+                try {
+                    cur = (ValueNode) cur.getNextRow();
+                    if (preCur.getRow() < value.getRow() && cur.getRow() > value.getRow()){
+                        preCur.setNextRow(value);
+                        value.setNextRow(cur);
+                    }
+                }
+                catch(NullPointerException e) {
+                    cur.setNextRow(value);
+                }
             }
         }
     }

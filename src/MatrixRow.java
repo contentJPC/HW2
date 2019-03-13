@@ -1,5 +1,5 @@
 public class MatrixRow implements HeadNode {
-    private ValueNode head;
+    private ValueNode head = new ValueNode();
     private Node nextRow;
     private Node nextCol;
 
@@ -15,7 +15,7 @@ public class MatrixRow implements HeadNode {
 
     public HeadNode getNext(){return (HeadNode) nextRow;}
 
-    public ValueNode getFirst(){return (ValueNode) nextCol;}
+    public ValueNode getFirst(){return (ValueNode) head.getNextCol();}
 
     public int get (int position){ //we want to return the value at a given point, for row position will be which column its in
         ValueNode cur = head;
@@ -30,22 +30,30 @@ public class MatrixRow implements HeadNode {
     }
 
     public void insert(ValueNode value) {
-        ValueNode cur;
-         if(head == null) {
-             head = value;
+        ValueNode cur = (ValueNode) head.getNextCol();
+        ValueNode preCur;
+         if(cur == null) {
+             head.setNextCol(value);
          }
-         else if(head.getCol() > value.getCol()) {
-             cur = head;
-             head = value;
-             head.setNextCol(cur);
+         else if(cur.getCol() > value.getCol()) {
+             preCur = cur;
+             head.setNextCol(value);
+             value.setNextCol(preCur);
          }
-         else if(head.getCol() < value.getCol()) {
-             cur = head;
-             boolean running = true;
-             while (running) {
-                 cur = (ValueNode) cur.getNextCol();
-                 insert(value);
+         else if(cur.getCol() < value.getCol()) {
+             preCur = cur;
+             while (cur.getCol() < value.getCol()) {
+                 try {
+                     cur = (ValueNode) cur.getNextCol();
+                     if (preCur.getCol() < value.getCol() && cur.getCol() > value.getCol()){
+                         preCur.setNextCol(value);
+                         value.setNextCol(cur);
+                     }
+                 }
+                 catch(NullPointerException e) {
+                     cur.setNextCol(value);
                  }
              }
+         }
          }
     }
