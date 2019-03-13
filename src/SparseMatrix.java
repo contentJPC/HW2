@@ -85,7 +85,26 @@ public class SparseMatrix {
     }
 
     public SparseMatrix product(SparseMatrix other) {
-        return null;
+        SparseMatrix production = new SparseMatrix(totalRows,other.getTotalCols());
+        int sum = 0;
+
+        HeadNode rowHead = firstRow;
+        HeadNode colHead = firstCol;
+
+//        for(int i=1;i<totalRows;i++){
+//            for(int j=1;j<other.getTotalCols();j++){
+//                for(int k=1;k<totalCols;k++){
+//                    sum = (rowHead.get(j))*();
+//                }
+//                production.insert(i,j,sum);
+//            }
+//        }
+
+        return production;
+    }
+
+    public int getTotalCols() {
+        return this.totalCols;
     }
 
 }
