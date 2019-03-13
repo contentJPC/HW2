@@ -60,20 +60,11 @@ public class SparseMatrix {
         return cur;
     }
 
-    public int getValue(int row, int col) {
-        return 9999999;
-    }
-
     public void print() {
         HeadNode rowHead = firstRow;
         for(int i=0;i<totalRows;i++) {
             for(int j=1;j<=totalCols;j++) {
-                try {
-                    System.out.print(rowHead.get(j));
-                }
-                catch (NullPointerException e) {
-                    System.out.print("0");
-                }
+                System.out.print(rowHead.get(j));
             }
             System.out.println("");
             rowHead = (HeadNode) rowHead.getNextRow();

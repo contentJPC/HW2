@@ -17,17 +17,31 @@ public class MatrixColumn implements HeadNode {
 
     public ValueNode getFirst(){ return (ValueNode) head.getNextRow(); }
 
-    public int get(int position){ //we want to return the value at a given point, for column position will be which row its in
-        //go to a specified position in the sparse matrix and return the value
+    public int get(int position){
+        try {
+            ValueNode cur = (ValueNode)head.getNextRow();
+            boolean keepGoing = true;
+            int getValue = 0;
 
-        ValueNode cur = head;
-        for(int i=0; i < position; i++) {
-            if (cur == null) {
-                //OH SHIT, THATS OUT OF THE MATRIX
+            while (keepGoing == true){
+                if (cur.getRow() == position){
+                    getValue = cur.getValue();
+                    keepGoing = false;
+                }
+                else if (cur.getRow() > position){
+                    keepGoing = false;
+                    getValue = 0;
+                }
+                else {
+                    cur = (ValueNode) cur.getNextRow();
+                }
             }
-            cur = (ValueNode) cur.getNextRow();
+
+            return getValue;
         }
-        return cur.getValue();
+        catch (NullPointerException e) {
+            return 0;
+        }
     }
 
     public void insert(ValueNode value) {

@@ -18,14 +18,30 @@ public class MatrixRow implements HeadNode {
     public ValueNode getFirst(){return (ValueNode) head.getNextCol();}
 
     public int get (int position){ //we want to return the value at a given point, for row position will be which column its in
-        ValueNode cur = head;
-        for(int i=0; i < position; i++) {
-            if (cur == null) {
-                //OH SHIT, THATS OUT OF THE MATRIX
+        try {
+            ValueNode cur = (ValueNode)head.getNextCol();
+            boolean keepGoing = true;
+            int getValue = 0;
+
+            while (keepGoing == true){
+                if (cur.getCol() == position){
+                    getValue = cur.getValue();
+                    keepGoing = false;
+                }
+                else if (cur.getCol() > position){
+                    keepGoing = false;
+                    getValue = 0;
+                }
+                else {
+                    cur = (ValueNode) cur.getNextCol();
+                }
             }
-            cur = (ValueNode) cur.getNextCol();
+
+            return getValue;
         }
-        return cur.getValue();
+        catch (NullPointerException e) {
+            return 0;
+        }
     }
 
     public void insert(ValueNode value) {
